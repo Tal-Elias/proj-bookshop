@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bookshop.css" class="style">
+    <title>Book Shop</title>
+</head>
+
+<body onload="onInit()">
+    <h1>Welcome to my bookshop</h1>
+    <a href="#" onclick="onAddBook()">Create new book</a>
+    <section class="filter-by">
+        <input type="text" class="filter-by-name" placeholder="Serach book..."
+            onkeydown="handleSearchKeyPress(event, {name: this.value})">
+        <label>
+            Min Rate:
+            <input type="range" min="0" max="10" value="5" class="filter-rate-range"
+                onchange="this.title=this.value;onSetFilterBy({minRate: +this.value})">
+        </label>
+    </section>
+    <section class="books-container">
+        <table>
+            <thead>
+                <tr onclick="onSetSortBy(event.target.innerText)">
+                    <th class="sort-id">Id</th>
+                    <th class="sort-title">Title</th>
+                    <th class="sort-price">Price</th>
+                    <th class="sort-rate">Rate</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="books-table"></tbody>
+        </table>
+    </section>
+
+    <section class="pages">
+        <button title="Prev Page" onclick="onPageNavigation('prev')">Prev Page</button>
+        <button title="Next Page" onclick="onPageNavigation('next')">Next Page</button>
+    </section>
+
+    <div class="stats-container">
+        <div>Expensive: <span class="expensive">3</span></div>
+        <div>Normal: <span class="normal">4</span></div>
+        <div>Cheap: <span class="cheap">1</span></div>
+    </div>
+
+    <div class="modal">
+        <h3></h3>
+        <h4 class="rating-container">Rate:
+            <button title="Decrease Rate" class="decrease" onclick="onRatingBook('decrease')">-</button>
+            <span></span>
+            <button title="Increase Rate" class="increase" onclick="onRatingBook('increase')">+</button>
+        </h4>
+        <h5>Book Details</h5>
+        <p></p>
+        <button class="close-modal" onclick="onCloseModal()">Close</button>
+    </div>
+
+    <div class="user-msg"></div>
+
+    <footer>Tal Elias©</footer>
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/bookshop.service.js"></script>
+    <script src="js/bookshop.controller.js"></script>
+</body>
+
+</html>
